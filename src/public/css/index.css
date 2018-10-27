@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* 项目的全局样式 与 共用样式 */
+
+.view_page{
+  width: 100%;
+  padding: 15px;
+}
+.view_page .el-card__header{
+  padding: 10px 20px;
+}
+
+.view_page .clearfix{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.view_page .clearfix>div{
+  height: 100%;
+}
