@@ -8,6 +8,7 @@
       </div>
       <!--卡片内容-->
       …………
+      <div class="arrow"></div>
     </el-card>
   </div>
 </template>
@@ -21,11 +22,8 @@
 </script>
 
 <style>
-  html,
-  body,
-  #app{
+  .arrow{
     width: 100%;
-    height: 100%;
-    background-color: #f2f2f2;
+    height: 900px;
   }
 </style>

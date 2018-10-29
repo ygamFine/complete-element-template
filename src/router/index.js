@@ -3,17 +3,18 @@ import Router from 'vue-router'
 import Login from '@/pages/login'
 import Main from '@/pages/main'
 
-
+// 首页
 import Home from '@/pages/home/home'
+// 测试页面
 import TestPage from '@/pages/testPage/testPage'
 
-Vue.use(Router)
+Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: 'Login'
+      redirect: 'login'
     },
     {
       path: '/login',
@@ -25,9 +26,11 @@ export default new Router({
       name: '主页',
       component: Main,
       children: [
-        {path: '/home',name: '首页',component: Home},
-        {path: '/test-page',name: '测试页面',component: TestPage}
+        { path: '/home',name: '首页',component: Home },
+        { path: '/test-page',name: '测试页面',component: TestPage }
       ]
     }
   ]
-})
+});
+
+export default router;

@@ -31,13 +31,14 @@
     </div>
     <div class="website_info">
       <a href="http://www.jnaw.top" target="_blank">济南奥维信息科技公司</a>
-      <p>©2016 AllView. All rights reserved.</p>
+      <p>©2018 AllView. All rights reserved.</p>
     </div>
   </div>
 </template>
 <script>
 
 import { signInInt } from '@/api/api';
+// 引入公用方法
 import * as pl from '@/public/js/public';
 export default {
   data () {

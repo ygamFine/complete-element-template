@@ -10,7 +10,7 @@
                    @open="handleOpen"
                    @close="handleClose"
                    text-color="#fff"
-                   active-text-color="#AFD0BD"
+                   active-text-color="red"
                    :collapse="isCollapse">
             <router-link to="/home">
               <el-menu-item index="1">

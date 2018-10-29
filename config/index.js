@@ -16,7 +16,7 @@ module.exports = {
     // 地址
     host: 'localhost',
     // 端口
-    port: 9426,
+    port: 8181,
     // 是否自动打开浏览器
     autoOpenBrowser: true,
     // 查询错误
