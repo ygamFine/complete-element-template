@@ -34,13 +34,18 @@ const router = new Router({
           path: '/home',
           name: '首页',
           component: Home,
-          meta: [{'path': '/home','name': '首页'}]
+          meta: [
+            {'path': '/home','name': '首页'}
+          ]
         },
         {
           path: '/test-details',
           name: '测试详情',
           component: TestDetails,
-          meta: [{'path':'/home','name':'首页'},{'path': '/test-details','name': '测试详情'}],
+          meta: [
+            {'path':'/home','name':'首页'},
+            {'path': '/test-details','name': '测试详情'}
+          ],
           ishide: true
         }
       ]
@@ -52,7 +57,10 @@ const router = new Router({
         {
           path: '/test-page',
           name: '测试页面',
-          meta: [{'path': '/test-page','name': '测试页面'}],
+          meta: [
+            {'path': '/test-page',
+            'name': '测试页面'}
+          ],
           component: TestPage
         }
       ]
