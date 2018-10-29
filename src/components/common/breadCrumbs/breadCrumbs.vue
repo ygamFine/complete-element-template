@@ -20,19 +20,18 @@ export default {
   },
   watch:{
     $route(){
-      // this.getBread();
+      // 路由改变 重新赋值
+      this.realList = this.$route.meta;
     }
   },
   created() {
-    this.getRoutePath();
+    // 路由加载赋值
+    this.realList = this.$route.meta;
   },
   mounted() {
 
   },
   methods: {
-    getRoutePath() {
-      this.realList = this.$route.meta.routeList;
-    }
   }
 }
 </script>

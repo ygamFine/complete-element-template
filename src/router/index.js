@@ -33,12 +33,14 @@ const router = new Router({
         {
           path: '/home',
           name: '首页',
-          component: Home
+          component: Home,
+          meta: [{'path': '/home','name': '首页'}]
         },
         {
           path: '/test-details',
           name: '测试详情',
           component: TestDetails,
+          meta: [{'path':'/home','name':'首页'},{'path': '/test-details','name': '测试详情'}],
           ishide: true
         }
       ]
@@ -50,6 +52,7 @@ const router = new Router({
         {
           path: '/test-page',
           name: '测试页面',
+          meta: [{'path': '/test-page','name': '测试页面'}],
           component: TestPage
         }
       ]
@@ -58,28 +61,8 @@ const router = new Router({
 });
 
 
-let routeList = [];
 // 路由控制
 router.beforeEach((toRoute, fromRoute, next) => {
-  let index = -1;
-  for(let i = 0; i < routeList.length; i++) {
-    if(routeList[i].name == toRoute.name) {
-      index = i;
-      break;
-    }
-  }
-  if (index !== -1) {
-//如果存在路由列表，则把之后的路由都删掉
-    routeList.splice(index + 1, routeList.length - index - 1);
-  } else if(toRoute.name != '登录'){
-    routeList.push({"name":toRoute.name,"path":toRoute.fullPath});
-  }
-  toRoute.meta.routeList = routeList;
-
-  console.log(routeList)
-
-
-
 
   // console.log(fromRoute);
   // 登录控制逻辑，根据项目不同做修改

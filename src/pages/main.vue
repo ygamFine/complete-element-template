@@ -15,32 +15,33 @@
                    text-color="#fff"
                    active-text-color="red"
                    :collapse="isCollapse">
+            <!-- 一级菜单渲染 -->
             <router-link v-for="(item,index) in menuList"
-                         v-if="!item.ishide"
+                         v-if="!item.ishide && item.leaf"
                          :to="item.children[0].path"
                          :key="index">
-              <!-- 一级菜单渲染 -->
-              <el-menu-item :index="String(index)"
-                            v-if="item.leaf">
+              <!-- 一级菜单标题 -->
+              <el-menu-item :index="String(index)">
                 <i class="el-icon-lx-home"></i>
                 <span slot="title">{{ item.name }}</span>
               </el-menu-item>
-
-              <!-- 存在二级菜单的渲染 -->
-              <el-submenu :index="String(index)" v-else>
-                <!-- 一级展开栏 -->
-                <template slot="title">
-                  <i class="el-icon-location"></i>
-                  <span slot="title">{{ item.name }}</span>
-                </template>
-                <!--二级菜单组-->
-                <el-menu-item-group>
-                  <router-link v-for="(m,i) in item.children" :to="m.path" :key="i">
-                    <el-menu-item index="1-1" >{{m.name}}</el-menu-item>
-                  </router-link>
-                </el-menu-item-group>
-              </el-submenu>
             </router-link>
+            <!-- 存在二级菜单的渲染 -->
+            <el-submenu v-for="(item,index) in menuList"
+                        v-if="!item.ishide && !item.leaf"
+                        :index="String(index)">
+              <!-- 一级展开栏 -->
+              <template slot="title">
+                <i class="el-icon-location"></i>
+                <span slot="title">{{ item.name }}</span>
+              </template>
+              <!--二级菜单组-->
+              <el-menu-item-group>
+                <router-link v-for="(m,i) in item.children" :to="m.path" :key="i">
+                  <el-menu-item index="1-1" >{{m.name}}</el-menu-item>
+                </router-link>
+              </el-menu-item-group>
+            </el-submenu>
           </el-menu>
         </el-aside>
         <el-container>

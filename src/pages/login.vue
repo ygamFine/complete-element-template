@@ -115,7 +115,6 @@ export default {
             // 提示语
             pl.message(res.message);
             // 登录成功 进入首页
-            console.log(this);
             this.$router.push({ path: '/home' });
           }else{
             // 提示语
