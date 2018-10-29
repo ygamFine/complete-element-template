@@ -2,8 +2,9 @@
   <div class="bread_crumbs">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item
-        v-for="item in realList"
-        :to="{ path: item.path }">
+        v-for="(item,index) in realList"
+        :to="{ path: item.path }"
+        :key="index">
         {{ item.name }}
       </el-breadcrumb-item>
     </el-breadcrumb>

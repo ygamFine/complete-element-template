@@ -6,23 +6,40 @@
             <i class="el-icon-picture-outline" v-if="isCollapse"></i>
             <p v-else>济南奥维信息科技</p>
           </div>
+          <!--text-color="#fff"-->
+          <!--active-text-color="red"-->
           <el-menu class="el-menu-vertical"
                    @open="handleOpen"
                    @close="handleClose"
+                   background-color="#0C2540"
                    text-color="#fff"
                    active-text-color="red"
                    :collapse="isCollapse">
-            <router-link to="/home">
-              <el-menu-item index="1">
+            <router-link v-for="(item,index) in menuList"
+                         v-if="!item.ishide"
+                         :to="item.children[0].path"
+                         :key="index">
+              <!-- 一级菜单渲染 -->
+              <el-menu-item :index="String(index)"
+                            v-if="item.leaf">
                 <i class="el-icon-lx-home"></i>
-                <span slot="title">首页</span>
+                <span slot="title">{{ item.name }}</span>
               </el-menu-item>
-            </router-link>
-            <router-link to="/test-page">
-              <el-menu-item index="2">
-                <i class="el-icon-setting"></i>
-                <span slot="title">Page 1</span>
-              </el-menu-item>
+
+              <!-- 存在二级菜单的渲染 -->
+              <el-submenu :index="String(index)" v-else>
+                <!-- 一级展开栏 -->
+                <template slot="title">
+                  <i class="el-icon-location"></i>
+                  <span slot="title">{{ item.name }}</span>
+                </template>
+                <!--二级菜单组-->
+                <el-menu-item-group>
+                  <router-link v-for="(m,i) in item.children" :to="m.path" :key="i">
+                    <el-menu-item index="1-1" >{{m.name}}</el-menu-item>
+                  </router-link>
+                </el-menu-item-group>
+              </el-submenu>
             </router-link>
           </el-menu>
         </el-aside>
@@ -71,16 +88,25 @@ export default {
     data(){
       return {
         // 菜单折叠
-        isCollapse: false
+        isCollapse: false,
+        // 菜单列表
+        menuList: []
       }
     },
     created() {
-
+      // 获取菜单列表
+      this.getMenuList();
     },
     mounted() {
 
     },
     methods: {
+      getMenuList() {
+        // 获取路由列表
+        let routerList = this.$router.options.routes;
+        // 列表赋值
+        this.menuList = routerList;
+      },
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
       },
@@ -178,6 +204,13 @@ export default {
     .el-main{
       padding: 0;
     }
-  }
 
+
+  }
+  .el-menu-item-group__title{
+    padding: 0 !important;
+  }
+  .el-menu-item.is-active {
+    background-color: #0f1e31 !important;
+  }
 </style>

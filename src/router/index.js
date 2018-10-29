@@ -15,17 +15,20 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: 'login'
+      redirect: 'login',
+      ishide: true
     },
     {
       path: '/login',
       name: '登录',
-      component: Login
+      component: Login,
+      ishide: true
     },
     {
       path: '/main',
-      name: '主页',
+      name: '首页',
       component: Main,
+      leaf: true,
       children: [
         {
           path: '/home',
@@ -33,14 +36,21 @@ const router = new Router({
           component: Home
         },
         {
+          path: '/test-details',
+          name: '测试详情',
+          component: TestDetails,
+          ishide: true
+        }
+      ]
+    },{
+      path: '/main',
+      name: '导航二',
+      component: Main,
+      children: [
+        {
           path: '/test-page',
           name: '测试页面',
           component: TestPage
-        },
-        {
-          path: '/test-details',
-          name: '测试详情',
-          component: TestDetails
         }
       ]
     }
@@ -59,15 +69,19 @@ router.beforeEach((toRoute, fromRoute, next) => {
     }
   }
   if (index !== -1) {
-  // 如果存在路由列表，则把之后的路由都删掉
+//如果存在路由列表，则把之后的路由都删掉
     routeList.splice(index + 1, routeList.length - index - 1);
   } else if(toRoute.name != '登录'){
     routeList.push({"name":toRoute.name,"path":toRoute.fullPath});
   }
   toRoute.meta.routeList = routeList;
 
+  console.log(routeList)
 
 
+
+
+  // console.log(fromRoute);
   // 登录控制逻辑，根据项目不同做修改
   // if (toRoute.name !== "login" && !localStorage.Token) {
   //   next({path: "/login"})

@@ -10,7 +10,7 @@ let self = Vue.prototype;
 
 /***
  *
- *  typeOF
+ *  judgment
  *  0: 成功   1: 警告		2:错误
  */
 let judgment = function(type){
