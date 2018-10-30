@@ -23,7 +23,7 @@
               <!-- 一级菜单标题 -->
 
               <el-menu-item :index="String(index)">
-                <i class="el-icon-lx-home"></i>
+                <i :class="item.icon"></i>
                 <span slot="title">{{ item.name }}</span>
               </el-menu-item>
             </router-link>
@@ -34,7 +34,7 @@
                         :index="String(index)">
               <!-- 一级展开栏 -->
               <template slot="title">
-                <i class="el-icon-location"></i>
+                <i :class="item.icon"></i>
                 <span slot="title">{{ item.name }}</span>
               </template>
               <!--二级菜单组-->

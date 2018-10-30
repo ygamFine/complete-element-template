@@ -9,6 +9,7 @@ import Home from '@/pages/home/home'
 import RichText from '@/pages/richText/richText'
 // 测试页面
 import TestPage from '@/pages/testPage/testPage'
+// 测试页面详情
 import TestDetails from '@/pages/testPage/testDetails'
 
 Vue.use(Router);
@@ -30,6 +31,7 @@ const router = new Router({
       path: '/main',
       name: '首页',
       component: Main,
+      icon:'el-icon-lx-home',
       leaf: true,
       children: [
         {
@@ -55,6 +57,7 @@ const router = new Router({
       path: '/main',
       name: '外部工具',
       component: Main,
+      icon: 'el-icon-lx-goods',
       children: [
         {
           path: '/rich-text',
@@ -69,6 +72,7 @@ const router = new Router({
       path: '/main',
       name: '导航二',
       component: Main,
+      icon: 'el-icon-lx-settings',
       children: [
         {
           path: '/test-page',
