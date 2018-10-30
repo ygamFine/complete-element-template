@@ -1,6 +1,9 @@
 @charset "utf-8";
 /* 项目的全局样式 与 共用样式 */
 
+.el-menu-item-group__title{
+  padding: 0;
+}
 .view_page{
   width: 100%;
   padding: 15px;

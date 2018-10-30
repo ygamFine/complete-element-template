@@ -9,11 +9,11 @@
           <!--text-color="#fff"-->
           <!--active-text-color="red"-->
           <el-menu class="el-menu-vertical"
-                   @open="handleOpen"
-                   @close="handleClose"
+                   @select="handleSelect"
                    background-color="#0C2540"
                    text-color="#fff"
                    active-text-color="red"
+                   :default-active="defaultActive"
                    :collapse="isCollapse">
             <!-- 一级菜单渲染 -->
             <router-link v-for="(item,index) in menuList"
@@ -21,6 +21,7 @@
                          :to="item.children[0].path"
                          :key="index">
               <!-- 一级菜单标题 -->
+
               <el-menu-item :index="String(index)">
                 <i class="el-icon-lx-home"></i>
                 <span slot="title">{{ item.name }}</span>
@@ -39,7 +40,7 @@
               <!--二级菜单组-->
               <el-menu-item-group>
                 <router-link v-for="(m,i) in item.children" :to="m.path" :key="i">
-                  <el-menu-item index="1-1" >{{m.name}}</el-menu-item>
+                  <el-menu-item :index="index +'-'+ i" >{{m.name}}</el-menu-item>
                 </router-link>
               </el-menu-item-group>
             </el-submenu>
@@ -60,7 +61,7 @@
                     </span>
                     <el-dropdown-menu slot="dropdown">
                       <el-dropdown-item>个人中心</el-dropdown-item>
-                      <el-dropdown-item divided>退出登录</el-dropdown-item>
+                      <el-dropdown-item divided @click="exitLogon()">退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                   </el-dropdown>
                 </li>
@@ -91,28 +92,36 @@ export default {
         // 菜单折叠
         isCollapse: false,
         // 菜单列表
-        menuList: []
+        menuList: [],
+        // 默认选中的菜单
+        defaultActive: '',
       }
     },
     created() {
       // 获取菜单列表
       this.getMenuList();
+      // 从本地查找默认选中菜单
+      this.defaultActive = sessionStorage.getItem('menuActive');
     },
     mounted() {
 
     },
     methods: {
+      // 获取菜单列表
       getMenuList() {
         // 获取路由列表
         let routerList = this.$router.options.routes;
         // 列表赋值
         this.menuList = routerList;
       },
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
+      // 退出登录
+      exitLogon() {
+        this.$router.push({'path':'/login'});
       },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
+      // 激活菜单
+      handleSelect(index,path) {
+        // 将当前点击的菜单项 存放进本地
+        sessionStorage.setItem('menuActive',index);
       }
     }
 }
@@ -208,9 +217,7 @@ export default {
 
 
   }
-  .el-menu-item-group__title{
-    padding: 0 !important;
-  }
+
   .el-menu-item.is-active {
     background-color: #0f1e31 !important;
   }
