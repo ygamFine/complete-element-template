@@ -12,6 +12,20 @@ export default {
     }
   },
   created() {
+    // 进行用户设备判断
+    let equipment = window.navigator.userAgent;
+    // Mac OS
+    let macOS = equipment.indexOf('Mac OS');
+    // Windows
+    let win = equipment.indexOf('window');
+    if (macOS > -1) {
+      // 引入 富文本所需要的 mac os 字体
+      require('./public/css/font.mac.css');
+    }
+    if (win > -1) {
+      // 引入 富文本所需要的 windos 字体
+      require('./public/css/font.win.css');
+    }
   },
   mounted() {
   },
@@ -21,11 +35,6 @@ export default {
 </script>
 
 <style>
-  /*引入 富文本所需要的 windos 字体*/
-  @import './public/css/font.win.css';
-  /*引入 富文本所需要的 mac os 字体*/
-  @import './public/css/font.mac.css';
-
   html,
   body,
   #app{
