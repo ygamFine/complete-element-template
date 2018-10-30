@@ -17,7 +17,7 @@ export default {
     // Mac OS
     let macOS = equipment.indexOf('Mac OS');
     // Windows
-    let win = equipment.indexOf('window');
+    let win = equipment.indexOf('windows');
     if (macOS > -1) {
       // 引入 富文本所需要的 mac os 字体
       require('./public/css/font.mac.css');
