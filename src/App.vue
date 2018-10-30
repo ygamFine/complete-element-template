@@ -6,13 +6,26 @@
 
 <script>
 export default {
-  name: 'App',
+  data(){
+    return {
+
+    }
+  },
+  created() {
+  },
   mounted() {
-  }
+  },
+  methods: {
+  },
 }
 </script>
 
 <style>
+  /*引入 富文本所需要的 windos 字体*/
+  @import './public/css/font.win.css';
+  /*引入 富文本所需要的 mac os 字体*/
+  @import './public/css/font.mac.css';
+
   html,
   body,
   #app{

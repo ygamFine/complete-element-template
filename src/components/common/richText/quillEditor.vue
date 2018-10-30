@@ -1,19 +1,29 @@
 <template>
-  <div class="rich_text">
+  <div class="quill_editor">
     <quill-editor
       ref="myTextEditor"
       v-model="content"
-      :options="editorOption"></quill-editor>
+      :options="editorOption">
+    </quill-editor>
   </div>
 </template>
 <script>
   // 富文本样式
+
   import 'quill/dist/quill.core.css'
   import 'quill/dist/quill.snow.css'
   import 'quill/dist/quill.bubble.css'
   import { quillEditor } from 'vue-quill-editor';
+  import * as Quill from 'quill'
+  //quill编辑器的字体
+  let fonts = ['SimSun', 'SimHei','Microsoft-YaHei','KaiTi','FangSong','Arial','Times-New-Roman','sans-serif'];
+  let Font = Quill.import('formats/font');
+  // 将字体加入到白名单
+  Font.whitelist = fonts;
+  Quill.register(Font, true);
+
   export default {
-    props: ['height'],
+    props: [],
     data(){
       return {
         content: '',
@@ -35,11 +45,12 @@
               [{'header': [1, 2, 3, 4, 5, 6, false]}],
 
               [{'color': []}, {'background': []}],
-              [{'font': []}],
+              [{'font': fonts}],
               [{'align': []}],
               ['link', 'image']
             ]
-          }
+          },
+          theme:'snow'
         }
       }
     },
@@ -66,10 +77,10 @@
 </script>
 
 <style lang="scss">
-  .rich_text .ql-editor{
+  .quill_editor .ql-editor{
     height: 600px;
   }
-  .rich_text .ql-editing{
+  .quill_editor .ql-editing{
     left: 30px !important;
   }
 </style>

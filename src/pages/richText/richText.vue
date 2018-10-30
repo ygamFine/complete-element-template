@@ -7,14 +7,14 @@
         <div class=""><el-button @click="getRichTextCentent()">获取富文本内容</el-button></div>
       </div>
       <!--卡片内容-->
-      <rich-text ref="richRef"></rich-text>
+      <quill-editor ref="richRef"></quill-editor>
     </el-card>
   </div>
 </template>
 
 <script>
-
-  import richText from '@/components/common/richText/richText'
+  // quillEditor 富文本
+  import quillEditor from '@/components/common/richText/quillEditor'
   // 引入公用方法
   import * as pl from '@/public/js/public';
   export default {
@@ -28,7 +28,7 @@
       }
     },
     components: {
-      richText
+      quillEditor
     }
   }
 </script>

@@ -7,7 +7,8 @@
 
 import axios from 'axios';
 let qs = require('qs');
-// 设置 axios 请求体类型
+// 设置 axios 请求体类型 (防止中文乱码)
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 
 
 let serverURL = 'http://zhcl.jnaw.top/canlian';
