@@ -5,6 +5,8 @@ import Main from '@/pages/main'
 
 // 首页
 import Home from '@/pages/home/home'
+// 富文本编辑器
+import RichText from '@/pages/richText/richText'
 // 测试页面
 import TestPage from '@/pages/testPage/testPage'
 import TestDetails from '@/pages/testPage/testDetails'
@@ -47,6 +49,20 @@ const router = new Router({
             {'path': '/test-details','name': '测试详情'}
           ],
           ishide: true
+        }
+      ]
+    },{
+      path: '/main',
+      name: '外部工具',
+      component: Main,
+      children: [
+        {
+          path: '/rich-text',
+          name: '富文本编辑器',
+          meta: [
+            {'path': '/rich-text','name': '富文本编辑器'}
+          ],
+          component: RichText
         }
       ]
     },{

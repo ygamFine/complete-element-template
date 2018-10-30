@@ -29,6 +29,7 @@
             <!-- 存在二级菜单的渲染 -->
             <el-submenu v-for="(item,index) in menuList"
                         v-if="!item.ishide && !item.leaf"
+                        :key="index"
                         :index="String(index)">
               <!-- 一级展开栏 -->
               <template slot="title">
@@ -52,7 +53,6 @@
             </div>
             <div class="header_action_bar">
               <ul>
-                <li><i class="el-icon-lx-full"></i></li>
                 <li>
                   <el-dropdown>
                     <span class="el-dropdown-link">

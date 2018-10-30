@@ -37,7 +37,7 @@ let judgment = function(type){
 export const alert = (text,type,callback) => {
   self.$alert(text, '提示', {
     confirmButtonText: '确定',
-    type: judgment(type),
+    type: judgment(type || ''),
     callback: callback
   });
 }
@@ -48,7 +48,7 @@ export const alert = (text,type,callback) => {
 export const message = (text,type) => {
   self.$message({
     message: text,
-    type: judgment(type),
+    type: judgment(type || 0),
   });
 }
 /***
@@ -63,7 +63,7 @@ export const confirm = (text,type,sure,cancel,yesbut,nobut) => {
   self.$confirm(text, '提示', {
     confirmButtonText: yesbut || '确定',
     cancelButtonText: nobut || '取消',
-    type: judgment(type)
+    type: judgment(type || 0)
   }).then(sure).catch(cancel);
 }
 /***
