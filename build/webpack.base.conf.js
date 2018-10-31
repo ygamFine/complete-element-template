@@ -17,6 +17,10 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
+  // 百度富文本
+  externals: {
+    "CKEDITOR": "window.CKEDITOR"
+  },
   // 配置 webpack 输出路径和命名规范
   output: {
     // webpack 输出的目标文件夹路径

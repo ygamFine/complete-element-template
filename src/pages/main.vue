@@ -39,7 +39,7 @@
               </template>
               <!--二级菜单组-->
               <el-menu-item-group>
-                <router-link v-for="(m,i) in item.children" :to="m.path" :key="i">
+                <router-link v-for="(m,i) in item.children" v-if="!m.ishide" :to="m.path" :key="i">
                   <el-menu-item :index="index +'-'+ i" >{{m.name}}</el-menu-item>
                 </router-link>
               </el-menu-item-group>
