@@ -42,14 +42,15 @@
           // Enabling extra plugins, available in the full-all preset: http://ckeditor.com/presets-all
           extraPlugins: 'tableresize,uploadimage,uploadfile',
 
+
           /*********************** File management support ***********************/
           // In order to turn on support for file uploads, CKEditor has to be configured to use some server side
           // solution with file upload/management capabilities, like for example CKFinder.
           // For more information see http://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_ckfinder_integration
 
           // Uncomment and correct these lines after you setup your local CKFinder instance.
-          // filebrowserBrowseUrl: 'http://example.com/ckfinder/ckfinder.html',
-          // filebrowserUploadUrl: 'http://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+          // filebrowserBrowseUrl: 'http://zhcl.jnaw.top',
+          filebrowserUploadUrl: 'http://zhcl.jnaw.top/canlian/file/fileupload2?type=Images&responseType=json',
           /*********************** File management support ***********************/
 
           // Make the editing area bigger than default.
@@ -68,7 +69,8 @@
           font_names: '宋体/SimSun;新宋体/NSimSun;仿宋_GB2312/FangSong_GB2312;楷体_GB2312/KaiTi_GB2312;黑体/SimHei;微软雅黑/Microsoft YaHei;',
 
           // Simplify the Image and Link dialog windows. The "Advanced" tab is not needed in most cases.
-          removeDialogTabs: 'image:advanced;link:advanced',
+
+          // removeDialogTabs : 'image:advanced;image:Upload;image:Link',
 
           // Define the list of styles which should be available in the Styles dropdown list.
           // If the "class" attribute is used to style an element, make sure to define the style for the class in "mystyles.css"
@@ -106,15 +108,18 @@
               }
             },
             { name: 'Borderless Table', element: 'table', styles: { 'border-style': 'hidden', 'background-color': '#E6E6FA' } },
-            { name: 'Square Bulleted List', element: 'ul', styles: { 'list-style-type': 'square' } }
+            { name: 'Square Bulleted List', element: 'ul', styles: { 'list-style-type': 'square' } },
+            {
+              name: 'Image on Left',
+              element: 'img',
+              styles: { 'width' : '100%' }
+            }
           ]
         }
       }
     },
     watch:{
-      $route(){
 
-      }
     },
     created() {
 
@@ -129,7 +134,8 @@
         self.CKEDITOR = require('CKEDITOR');
         // 初始化 富文本加载
         self.CKEDITOR.replace( 'editor' ,config);
-      },1000)
+
+      },2000)
 
     },
     methods: {
@@ -145,5 +151,8 @@
 </script>
 
 <style lang="scss">
-
+  iframe .cke_editable img{
+    max-width: 100%;
+    height: auto;
+  }
 </style>
